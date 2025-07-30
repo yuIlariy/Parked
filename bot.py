@@ -1,6 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import BOT_TOKENS, THUMBNAIL_URL, REDIRECT_USERNAME, API_ID, API_HASH
+import asyncio
 
 bots = [
     Client(
@@ -29,4 +30,7 @@ for bot in bots:
     bot.start()
 
 print("✅ All redirect bots are running.")
+
+# 🚦 Keep the process alive
+asyncio.get_event_loop().run_forever()
 
