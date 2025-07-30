@@ -1,8 +1,16 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from config import BOT_TOKENS, THUMBNAIL_URL, REDIRECT_USERNAME
+from config import BOT_TOKENS, THUMBNAIL_URL, REDIRECT_USERNAME, API_ID, API_HASH
 
-bots = [Client(f"bot_{i}", bot_token=token) for i, token in enumerate(BOT_TOKENS)]
+bots = [
+    Client(
+        f"bot_{i}",
+        api_id=API_ID,
+        api_hash=API_HASH,
+        bot_token=token
+    )
+    for i, token in enumerate(BOT_TOKENS)
+]
 
 for bot in bots:
     @bot.on_message(filters.private & filters.command("start"))
@@ -21,5 +29,4 @@ for bot in bots:
     bot.start()
 
 print("✅ All redirect bots are running.")
-
 
